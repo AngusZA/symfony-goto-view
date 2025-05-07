@@ -1,77 +1,62 @@
 {
-    "name": "laravel-goto-view",
-    "displayName": "Laravel goto view",
+    "name": "symfony-goto-view",
+    "displayName": "Symfony goto view",
     "description": "Quick jump to view",
-    "version": "1.3.11",
-    "publisher": "codingyu",
+    "version": "1.0.0",
+    "publisher": "AngusZa",
     "license": "MIT",
     "engines": {
-        "vscode": "^1.50.0"
+        "vscode": "^1.90.0"
     },
-    "icon": "images/icon.jpg",
-    "repository": "https://github.com/codingyu/laravel-goto-view.git",
+    "icon": "images/icon.png",
+    "repository": "https://github.com/AngusZA/symfony-goto-view.git",
     "categories": [
         "Other"
     ],
     "keywords": [
         "PHP",
-        "Laravel"
+        "Symfony"
     ],
     "activationEvents": [
         "onLanguage:php",
-        "onLanguage:blade"
+        "onLanguage:html"
     ],
     "contributes": {
         "configuration": {
             "type": "object",
-            "title": "Laravel goto view configuration",
+            "title": "Symfony goto view configuration",
             "properties": {
-                "laravel_goto_view.quickJump": {
+                "symfony_goto_view.quickJump": {
                     "type": "boolean",
                     "default": true,
                     "description": "Use 'Ctrl' or 'Alt' + click"
                 },
-                "laravel_goto_view.folderTip": {
+                "symfony_goto_view.folderTip": {
                     "type": "boolean",
                     "default": true,
                     "description": "Display path name"
                 },
-                "laravel_goto_view.maxLinesCount": {
+                "symfony_goto_view.maxLinesCount": {
                     "type": "integer",
-                    "default": 666,
+                    "default": 750,
                     "description": "Maximum number of scanning rows"
                 },
-                "laravel_goto_view.regex": {
+                "symfony_goto_view.regex": {
                     "type": "string",
-                    "default": "(?<=view\\(['\"]|markdown\\(['\"]|assertViewIs\\(['\"]|\\(view:.['\"]|View::make\\(['\"]|@include\\(['\"]|@extends\\(['\"]|@component\\(['\"]|Inertia::(?:render|modal)\\(['\"]|\\(component:.['\"]|<)(?:x-|livewire:|[^'\"\\s/>]+(?:\\/[^'\"\\s/>]+)*)",
-                    "description": "Custom regex for matching strings"
+                    "default": "(?<=render\\(['\"]|include ['\"]|extends [\"'])(?:[^'\"\\s\\/>]+(?:\\/[^'\"\\s\\/>]+)*)",
+                    "description": "Custom regex for matching filename to link to"
                 },
-                "laravel_goto_view.folders": {
+                "symfony_goto_view.folders": {
                     "type": "object",
                     "default": {
-                        "default": "/resources/views",
-                        "js": "/resources/js/Pages",
-                        "vendor": "/resources/views/vendor"
+                        "default": "/templates"
                     },
                     "items": {
                         "type": "string"
                     },
                     "minItems": 1,
                     "uniqueItems": true,
-                    "description": "Multiple folders"
-                },
-                "laravel_goto_view.extensions": {
-                    "type": "array",
-                    "default": [
-                        ".blade.php",
-                        ".vue"
-                    ],
-                    "items": {
-                        "type": "string"
-                    },
-                    "minItems": 1,
-                    "uniqueItems": true,
-                    "description": "Multiple extensions"
+                    "description": "You may specify multiple folders"
                 }
             }
         }
@@ -86,16 +71,16 @@
         "test": "node ./out/test/runTest.js"
     },
     "devDependencies": {
-        "@types/vscode": "^1.50.0",
+        "@types/vscode": "^1.90.0",
         "@types/glob": "^7.1.4",
         "@types/mocha": "^9.0.0",
-        "@types/node": "14.x",
+        "@types/node": "22.x",
         "@typescript-eslint/eslint-plugin": "^5.1.0",
         "@typescript-eslint/parser": "^5.1.0",
         "eslint": "^8.1.0",
         "glob": "^7.1.7",
         "mocha": "^9.1.3",
-        "typescript": "^4.4.4",
+        "typescript": "^5.8.3",
         "@vscode/test-electron": "^1.6.2"
     }
 }

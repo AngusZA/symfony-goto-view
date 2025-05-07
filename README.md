@@ -1,7 +1,6 @@
-# Laravel goto view
+# Symfony goto view
 
-[![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/codingyu.laravel-goto-view)](https://marketplace.visualstudio.com/items?itemName=codingyu.laravel-goto-view)
-
+Forked from Laravel goto view
 
 # How to use
 
@@ -11,22 +10,21 @@
 
 ## regex
 
-Custom regex for matching strings.
+Custom regex for matching file name strings. The strings will be searched for in the folders listed in `symfony_goto_view.folders`.
 
 ## maxLinesCount
 
-Maximum number of scanning rows.
+Maximum number of scanning rows. This is the maximum lines that should be scanned per file (document). In other words, the maximum lines in the code.
 
-Default: 666
+Default: 750
 
 ## folders
 
-Search according to the configured path.
+These are the folders that must be scanned to find a matching filename to link to.
 
 ```json
-"laravel_goto_view.folders": {
-    "default" : "/resources/views",
-    "theme_xxx": "/resources/views/theme_xxx"
+"symfony_goto_view.folders": {
+    "default" : "/templates",
 }
 ```
 
@@ -35,9 +33,8 @@ Search according to the configured path.
 Search views according to the configured extensions.
 
 ```json
-"laravel_goto_view.extensions": [
-    ".blade.php",
-    ".inky.php"
+"symfony_goto_view.extensions": [
+    ".html.twig"
 ]
 ```
 
@@ -50,3 +47,13 @@ Use `Ctrl` or `Alt` + `click` to jump to the first matched file.
 ## folderTip
 
 Display the path name of the configuration.
+
+
+# Installation Instructions
+
+1. Install packages with `npm install` 
+2. Install typescript by running `npm install typescript`
+3. Install vsce by running `npm install -g @vscode/vsce`
+4. Compile package `vsce package`
+5. Install package `code --install-extension ./symfony-goto-view-1.0.0.vsix`
+ 

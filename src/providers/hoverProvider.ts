@@ -13,7 +13,7 @@ import * as util from '../util';
 
 export default class HoverProvider implements vsHoverProvider {
     provideHover(doc: TextDocument, pos: Position): ProviderResult<Hover> {
-        let config = workspace.getConfiguration('laravel_goto_view');
+        let config = workspace.getConfiguration('symfony_goto_view');
         let reg = new RegExp(config.regex);
         let linkRange = doc.getWordRangeAtPosition(pos, reg);
 

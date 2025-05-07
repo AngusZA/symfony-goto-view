@@ -11,9 +11,9 @@ export function getFilePath(text: string, document: TextDocument) {
 
 export function getFilePaths(text: string, document: TextDocument) {
     let workspaceFolder = workspace.getWorkspaceFolder(document.uri)?.uri.fsPath || '';
-    let config = workspace.getConfiguration('laravel_goto_view');
+    let config = workspace.getConfiguration('symfony_goto_view');
     let paths = scanViewPaths(workspaceFolder, config);
-    let file = text.replace(/\"|\'/g, '').replace('x-', 'components.').replace('livewire:', 'livewire.').replace(/\./g, '/').split('::');
+    let file = text.replace(/\"|\'/g, '').split('::');
     let result = [];
 
     for (let item in paths) {
@@ -25,17 +25,17 @@ export function getFilePaths(text: string, document: TextDocument) {
                 showPath = paths[item] + `/${file[1]}`;
             }
         }
-        for (let extension of config.extensions) {
-            let filePath = workspaceFolder + showPath + extension;
+        
+        let filePath = workspaceFolder + showPath;
 
-            if (fs.existsSync(filePath)) {
-                result.push({
-                    "name": item,
-                    "showPath": showPath,
-                    "fileUri": Uri.file(filePath)
-                });
-            }
+        if (fs.existsSync(filePath)) {
+            result.push({
+                "name": item,
+                "showPath": showPath,
+                "fileUri": Uri.file(filePath)
+            });            
         }
+        
     }
 
     return result;
@@ -44,26 +44,15 @@ export function getFilePaths(text: string, document: TextDocument) {
 function scanViewPaths(workspaceFolder: string, config: WorkspaceConfiguration) {
     let folders = Object.assign({}, config.folders);
 
-    // Modules
-    let modulePath = path.join(workspaceFolder, 'Modules');
-    if (fs.existsSync(modulePath)) {
-        fs.readdirSync(modulePath).forEach(element => {
-            let file = path.join(modulePath, element);
-            if (fs.statSync(file).isDirectory()) {
-                folders[element.toLocaleLowerCase()] = "/Modules/" + element + "/resources/views";
+    let bundlePath = path.join(workspaceFolder, 'src');
+    if (fs.existsSync(bundlePath)) {
+        fs.readdirSync(bundlePath).forEach(element => {
+            let file = path.join(bundlePath, element, 'Resources/views');
+            if (fs.existsSync(file) && fs.statSync(file).isDirectory()) {
+                folders[element.toLowerCase()] = `/src/${element}/Resources/views`;
             }
         });
-    }
-    // vendor
-    let vendorPath = path.join(workspaceFolder, 'resources/views/vendor');
-    if (fs.existsSync(vendorPath)) {
-        fs.readdirSync(vendorPath).forEach(element => {
-            let file = path.join(vendorPath, element);
-            if (fs.statSync(file).isDirectory()) {
-                folders[element.toLocaleLowerCase()] = "/resources/views/vendor/" + element;
-            }
-        });
-    }
+    }  
 
     return folders;
 }

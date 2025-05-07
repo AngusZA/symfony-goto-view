@@ -14,7 +14,7 @@ import * as util from '../util';
 export default class LinkProvider implements vsDocumentLinkProvider {
     public provideDocumentLinks(doc: TextDocument): ProviderResult<DocumentLink[]> {
         let documentLinks = [];
-        let config = workspace.getConfiguration('laravel_goto_view');
+        let config = workspace.getConfiguration('symfony_goto_view');
 
         if (config.quickJump) {
             let reg = new RegExp(config.regex, 'g');
