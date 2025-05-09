@@ -1,6 +1,6 @@
 # Symfony goto view
 
-Forked from Laravel go to view
+Forked from Laravel goto view
 
 # How to use
 
@@ -10,7 +10,7 @@ Forked from Laravel go to view
 
 ## regex
 
-Custom regex for matching file name strings. The strings will be searched for in the `symfony_goto_view.folders`.
+Custom regex for matching file name strings. The strings will be searched for in the `symfony_goto_view.folders` folders.
 
 ## maxLinesCount
 
@@ -50,7 +50,7 @@ Use `Ctrl` or `Alt` + `click` to jump to the first matched file.
 Display the path name of the configuration.
 
 
-#Installation Instructions
+# Installation Instructions
 
 1. Install packages with `npm install` 
 2. Install by running `npm install typescript`
