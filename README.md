@@ -10,7 +10,7 @@ Forked from Laravel goto view
 
 ## regex
 
-Custom regex for matching file name strings. The strings will be searched for in the `symfony_goto_view.folders` folders.
+Custom regex for matching file name strings. The strings will be searched for in the folders listed in `symfony_goto_view.folders`.
 
 ## maxLinesCount
 
@@ -34,8 +34,7 @@ Search views according to the configured extensions.
 
 ```json
 "symfony_goto_view.extensions": [
-    ".html.twig",
-    ".inky.php"
+    ".html.twig"
 ]
 ```
 
