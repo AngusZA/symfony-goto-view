@@ -53,7 +53,7 @@ Display the path name of the configuration.
 # Installation Instructions
 
 1. Install packages with `npm install` 
-2. Install by running `npm install typescript`
+2. Install typescript by running `npm install typescript`
 3. Install vsce by running `npm install -g @vscode/vsce`
 4. Compile package `vsce package`
 5. Install package `code --install-extension ./symfony-goto-view-1.0.0.vsix`
